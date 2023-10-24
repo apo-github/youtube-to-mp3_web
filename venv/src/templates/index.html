@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <title>yt-downloder</title>
+  </head>
+  <body>
+    {% block body %}
+    <p>YoutubeのURLを入力してください</p>
+    <form action="./" method="POST" onsubmit="return submitClick()">
+      <input type="url" name="url" id="url" />
+      <input type="submit" name="submit" id="submit" />
+    </form>
+    {% endblock %}
+    <script src="./../static/func.js"></script>
+  </body>
+</html>
