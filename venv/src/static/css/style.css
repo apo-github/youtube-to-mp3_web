@@ -1,0 +1,30 @@
+.gradation-text{
+    color: #3ab5b0;
+    background-image: linear-gradient(to right, #3ab5b0 0%, #3d99be 31%, #56317a 100%);
+    /* background-image: linear-gradient(45deg, rgba(254,212,117,1) 0%,rgba(229,61,93,1) 50%,rgba(194,49,134,1) 70%,rgba(156,56,187,1) 100%); */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* フッター */
+.footer {
+    font-size: 1.3em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+}
+body > .container {
+    padding: 60px 15px 0;
+    }
+.container .text-muted {
+    margin: 20px 0;
+}
+    
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+    
