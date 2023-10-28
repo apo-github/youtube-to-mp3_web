@@ -59,6 +59,8 @@ def delete_file(video_list_path):
 
         except FileNotFoundError:
             print("#### FileNotFoundError エラーっす")
+            delete_line(video_list_path, str(video_path))  #video_list.txtの行を削除
+            delete_file(video_list_path)  #エラーが無くなるまで再起呼び出し
 
 
 
