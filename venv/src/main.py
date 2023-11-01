@@ -80,13 +80,14 @@ def post():
     project_dir = os.path.abspath(os.path.join(venv_dir, os.pardir)) #1つ上のディレクトリを取得(venvの一つ上)
     video_list_path = venv_dir + "/src/static/video_list.txt"
     log_path = venv_dir + "/src/static/log.txt"
-    # ファイル削除
+    print(venv_dir)
+    print(project_dir)
+
+    # 最初にファイルが残っていたら削除
     delete_file(video_list_path)
 
     yt_url = request.form.get('url') #nameがurlの要素を取得
     format_name = ".mp3"
-    print(venv_dir)
-    print(project_dir)
 
     # オプション設定
     ydl_opts = {
@@ -98,8 +99,7 @@ def post():
         # 'max_downloads' : '1', #最大ダウンロード数
     }
     
-
-
+    ### youtube からダウンロード
     with YoutubeDL(ydl_opts) as ydl:
         ydl.download(yt_url) 
         print("##### ビデオ情報")
@@ -120,7 +120,7 @@ def post():
 
     MIMETYPE = 'audio/mpeg'
 
-    # ダウンロード処理
+    # クライアント側へダウンロードさせる処理
     res = make_response()
     res.data  = open(file_path, "rb").read()
     res.headers['Content-Type'] = MIMETYPE
@@ -141,8 +141,8 @@ if __name__ == "__main__":
 
 # # Storageにアップロード(MEGA無料ストレージを使用)
 # mega = Mega()
-# email = "tantori8000@gmail.com"
-# password = "WSH168-su"
+# email = ""
+# password = ""
 # m = mega.login(email,password)
 # file = m.upload(file_path)
 
