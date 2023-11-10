@@ -1,0 +1,6 @@
+.venv
+video/**
+log/**
+
+!video/.gitkeep
+!log/.gitkeep
