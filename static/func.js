@@ -31,4 +31,4 @@ let url = document.getElementById('url');
 url.addEventListener('change', isValidUrl); // イベントが発生した時の処理
 
 let submitButton = document.getElementById('submit');
-checkButton.addEventListener('click', submitClick); //submitボタンが押された時の処理
+submitButton.addEventListener('click', submitClick); //submitボタンが押された時の処理
