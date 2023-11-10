@@ -28,8 +28,7 @@ def read_log(video_list_path):
 ## log書き込み
 def write_log(file_path, log):
   with open(file_path, mode='a', encoding='utf_8') as f:
-    f.write(log)
-
+    f.writelines("\n"+log)
 
 ## 行を削除
 def delete_line(file_path, del_text):
@@ -128,8 +127,8 @@ def post():
     ydl.download(yt_url) #ダウンロード
 
     ## 記録用
-    dt_now = datetime.datetime.now()
-    log = dt_now.strftime(
+    dt_now_jst = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+    log = dt_now_jst.strftime(
         '%Y-%m-%d %H:%M:%S') + ", " + video_title + ", " + yt_url  #ログの内容
     write_log(VIDEO_LIST_PATH, file_path)  #削除処理記録用
     write_log(LOG_PATH, str(log))  #個人的な記録用
@@ -152,10 +151,10 @@ def post():
 
 if __name__ == "__main__":
   from waitress import serve
-  ## ファイル作成
+  ## ファイル新規作成
   if not os.path.isfile(VIDEO_LIST_PATH):
     with open(VIDEO_LIST_PATH, mode='w') as f:
-      f.write("")
+      pass
   
   ## flask run
   serve(app, host="0.0.0.0", port=3000)
