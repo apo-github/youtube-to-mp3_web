@@ -100,23 +100,22 @@ def post():
       'max_filesize': 700000000,  #最大ファイルサイズを指定(bytes), 現状は700MBまで許容
       # 'max_downloads' : '1', #最大ダウンロード数
   }
-  # ydl_opts = {
-  #     'outtmpl': video_folder_path + uuid_4 + '%(id)s' + format_name,  #/video/ファイル名.mp4 (uuidをファイル名の頭につけて被らないようにしている)
-  #     'title': '%(title)s',
-  #     'format': 'bestaudio',
-  #     'playlistreverse': True,  #プレイリストの古い順に取得
-  #     'max_filesize': 700000000,  #最大ファイルサイズを指定(bytes), 現状は700MBまで許容
-  #     # 'max_downloads' : '1', #最大ダウンロード数
-  # }
 
   ## infoを取り出す
   with YoutubeDL() as ydl:
     print("##### ビデオ情報")
     info = ydl.extract_info(yt_url, download=False)
-    
+
+    #### テスト用 #TODO 再生リストに対応させる！
+    #### print("プレイリストかどうか：", info.get('_type')) 
+    # if info.get('_type') == 'None': #1動画
+    # elif info.get('_type') == 'playlist': #プレイリスト
+    # else: #例外
+
 
   ## ダウンロード
   with YoutubeDL(ydl_opts) as ydl:
+
     info = ydl.extract_info(yt_url, download=False)
     video_id = info.get('id', None)
     video_title = info.get('title', None)
@@ -133,7 +132,7 @@ def post():
     write_log(VIDEO_LIST_PATH, file_path)  #削除処理記録用
     write_log(LOG_PATH, str(log))  #個人的な記録用
 
-    # ### テスト用 #TODO 再生リストに対応！！
+    ## json書き出しテスト
     # json_path =  os.path.join(CURRENT_DIR , "log","json.txt")
     # write_log(json_path, json.dumps(info, indent=2, ensure_ascii=False))  #個人的な記録用
 

@@ -1,5 +1,5 @@
 function clearText() {
-	var url_form = document.getElementById("url");
+	let url_form = document.getElementById("url");
     url_form.value = '';
 }
 
@@ -11,7 +11,7 @@ function isValidUrl() {
         new URL(url_text); 
         return true; 
     } catch (err) { 
-        alert("Please enter a valid URL(´・ω・`)");
+        alert("Please enter a valid URL (´・ω・`)");
         clearText();
         return false; 
     }
@@ -19,9 +19,16 @@ function isValidUrl() {
 }
 
 function submitClick(){
+    print("読まれたよ")
     let url_text = document.getElementById('url').value;
-    if (url_text == null || url_text == "" || url_text.trim() === ""){
-        alert("Please enter a valid URL(´・ω・`)");
+    if (url_text == null || url_text == "" || url_text.trim() === ""){//空白の場合
+        alert("Please enter a valid URL (´・ω・`)");
+        clearText();
+        return false; 
+    }
+
+    if (url_text.includes('@')){ //チャンネルの場合
+        alert("Sorry, Channel URL is not available (´・ω・`)");
         clearText();
         return false; 
     }
