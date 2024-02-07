@@ -68,6 +68,16 @@ def delete_file(video_list_path):
 
 app = Flask(__name__)  #インスタンス作成
 
+## videofile, logfile がなければ新規作成
+print(VIDEO_LIST_PATH)
+if not os.path.isfile(VIDEO_LIST_PATH):
+  with open(VIDEO_LIST_PATH, mode='w') as f:
+    pass
+
+if not os.path.isfile(LOG_PATH):
+  with open(LOG_PATH, mode='w') as f:
+    pass
+
 ## templateを使用するやり方
 @app.route('/')
 def index():
@@ -150,10 +160,7 @@ def post():
 
 if __name__ == "__main__":
   from waitress import serve
-  ## ファイル新規作成
-  if not os.path.isfile(VIDEO_LIST_PATH):
-    with open(VIDEO_LIST_PATH, mode='w') as f:
-      pass
+  
   
   ## flask run
   serve(app, host="0.0.0.0", port=3000)
